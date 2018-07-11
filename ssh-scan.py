@@ -21,7 +21,7 @@ def parseNumList(string):
     return list(range(int(start,10), int(end,10)+1))
 
 
-parser = argparse.ArgumentParser(description="Python program that snatches banners of accessible ports")
+parser = argparse.ArgumentParser(description="Python program for snatching SSH banners")
 
 parser.add_argument('--host', help='host(s) to scan', nargs='+', metavar='HOST', required='true')
 parser.add_argument('-p', '--port', help='port(s) to scan', nargs='+', metavar='PORT', type=parseNumList, required='true')
@@ -72,9 +72,9 @@ def port_timed_check(host, port, file_write):
         banner_grab(host, int(port))
         if banner_results == 'True':
             if non_ip == 'True':
-                output = domain_name + ': ' + str(banner)
+                output = domain_name + ':' + str(port) + ' == ' + str(banner)
             else:
-                output = host + ': ' + str(banner)
+                output = host + ':' + str(port) + ' == ' + str(banner)
         else:
             output = ''
     else:
