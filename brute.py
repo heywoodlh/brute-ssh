@@ -40,9 +40,9 @@ def ssh_login(client, username, password, server, port, file_write):
         if conn is None:
             print('Success!')
             if file_write == 'True':
-                f.write(server + ':' + port + ' ' + password)
+                f.write(server + ':' + str(port) + ' ' + password)
             if not args.quiet:
-                print(server + ':' + port + ' ' + password)
+                print(server + ':' + str(port) + ' ' + password)
         client.close()
     except paramiko.ssh_exception.AuthenticationException:
         client.close()
